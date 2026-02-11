@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-FR" itemscope itemtype="https://schema.org/WebPage">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LR Paris - En Construction</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+    <title>Bienvenue chez LR Paris | Agence de Produits de Marque</title>
+    <meta name="description" content="LR Paris est une agence de produits de marque à service complet, offrant des expériences exceptionnelles de produits et d'emballages aux marques du monde entier. Visitez notre site pour en savoir plus !" />
+    <link rel="canonical" href="https://fr.lrparis.com/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bienvenue chez LR Paris | Agence de Produits de Marque" />
+    <meta property="og:description" content="LR Paris est une agence de produits de marque à service complet, offrant des expériences exceptionnelles de produits et d'emballages aux marques du monde entier." />
+    <meta property="og:url" content="https://fr.lrparis.com/" />
+    <meta property="og:site_name" content="LR Paris" />
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' type='text/css' media='all' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/vxd2kjd.css">
+
     <style>
+        :root {
+            --lr-cream: #EFE9E1;
+            --lr-blue: #1B0E98;
+            --lr-dark: #171717;
+            --lr-light: #EAE2D2;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,210 +40,818 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #EFE9E1 0%, #f5f0e8 100%);
-            color: #1B0E98;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: "ivyora-display", sans-serif;
+            color: var(--lr-dark);
             overflow-x: hidden;
-            padding: 2rem 0;
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 900px;
-            animation: fadeIn 1.2s ease-in;
+        /* Header Styles */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.3s ease;
         }
 
-        .logo {
-            max-width: 300px;
-            height: auto;
-            margin: 0 auto 1rem;
-            display: block;
+        .site-header.scrolled {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .tagline {
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: rgba(27, 14, 152, 0.7);
-            margin-bottom: 3rem;
+        .navbar {
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar-nav .nav-link {
+            font-family: "Oswald", sans-serif;
+            font-weight: 400;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--lr-dark) !important;
+            margin: 0 1rem;
+            font-size: 14px;
         }
 
-        .hero-image {
-            width: 100%;
-            max-width: 700px;
-            height: 300px;
-            margin: 0 auto 3rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(27, 14, 152, 0.15);
-            
+        .navbar-nav .nav-link:hover {
+            color: var(--lr-blue) !important;
         }
 
-        .hero-image img {
+        .header-contact-link .nav-link {
+            background: var(--lr-dark);
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 0;
+        }
+
+        .header-contact-link .nav-link:hover {
+            background: var(--lr-blue);
+            color: white !important;
+        }
+
+        /* Banner Section */
+        .custom-banner-container {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 5%;
+            background-color: var(--lr-cream);
+            position: relative;
+        }
+
+        .custom-banner-container h1 {
+            font-family: "ivyora-display", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 1.1;
+            color: var(--lr-dark);
+        }
+
+        .custom-banner-container h1 .highlight-blue {
+            color: var(--lr-blue);
+        }
+
+        .tilt-text {
+            display: inline-block;
+            transform: rotate(-3deg);
+        }
+
+        /* Arrow Animation */
+        .arrow-container {
+            width: 25px;
+            animation: bounce 1600ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            cursor: pointer;
+            height: 20px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .arrow-down {
+            height: 6px;
+            background: black;
+            transform: rotate(45deg);
+            transform-origin: 0% 0%;
+            border-radius: 5px;
+        }
+
+        .arrow-down:after {
+            content: '';
+            position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center top;
+            bottom: 0;
+            left: 100%;
+            border-radius: 5px;
+            background: black;
+            transform: rotate(-90deg);
+            transform-origin: 0% 100%;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
+        @keyframes bounce {
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        /* Clients Marquee */
+        .clients-section {
+            padding: 30px 0;
+            background: white;
+            overflow: hidden;
+        }
+
+        .clients-title {
+            font-family: "Oswald", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 15px;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(27, 14, 152, 0.8);
-            margin-bottom: 2rem;
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
         }
 
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(27, 14, 152, 0.2);
-            border-top: 3px solid #1B0E98;
-            border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-            margin: 2rem auto;
-        }
-
-        .links-section {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(27, 14, 152, 0.2);
-        }
-
-        .links-section p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .website-links {
+        .marquee-track {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
+            width: max-content;
+            animation: marquee 80s linear infinite;
         }
 
-        .website-links a {
-            color: #1B0E98;
-            text-decoration: none;
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .client-item {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            font-size: 26px;
+            color: var(--lr-dark);
+        }
+
+        .client-item::after {
+            content: "|";
+            margin: 0 16px;
+            font-weight: bold;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--lr-dark);
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--lr-blue);
+        }
+
+        .modal-title {
+            font-family: "Oswald", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--lr-dark);
+        }
+
+        .modal-body {
             font-size: 1rem;
-            letter-spacing: 1px;
-            padding: 0.75rem 1.5rem;
-            border: 2px solid #1B0E98;
-            border-radius: 4px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Paragraph Section */
+        .custom-paragraph-background {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .lr-paragraph-normal {
+            font-family: "ivyora-display", sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.5;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .lr-paragraph-highlighted {
+            font-weight: 500;
+            color: var(--lr-blue);
+        }
+
+        /* Grid Section */
+        .lr-grid-section {
+            padding: 0;
+        }
+
+        .grid-item {
+            min-height: 280px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            background-size: cover;
+            background-position: center;
             transition: all 0.3s ease;
         }
 
-        .website-links a:hover {
-            background: #1B0E98;
-            color: #EFE9E1;
+        .grid-item-1 {
+            background: white;
+            justify-content: flex-start;
+            min-height: 280px;
         }
 
-        .contact {
-            margin-top: 2rem;
+        .grid-item-1 h2 {
+            font-family: "ivyora-display", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .contact a {
-            color: #1B0E98;
+        .grid-item-1 p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .grid-item-2 {
+            background: white;
+            cursor: pointer;
+        }
+
+        .grid-item-2:hover {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .grid-block-upper-text {
+            font-family: "Oswald", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--lr-dark);
+        }
+
+        .chevron::after {
+            content: " ›";
+        }
+
+        .grid-block-lower-text {
+            font-size: 0.9rem;
+            color: var(--lr-dark);
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .grid-item-2:hover .grid-block-lower-text {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--lr-cream);
+            padding: 4rem 0 2rem;
+        }
+
+        .huge-footer-text {
+            font-family: "ivyora-display", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+            font-size: clamp(4rem, 15vw, 12rem);
+            color: var(--lr-dark);
             text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 1px;
             transition: color 0.3s ease;
+            display: block;
+            text-align: center;
         }
 
-        .contact a:hover {
-            color: #0f0860;
+        .huge-footer-text:hover {
+            color: var(--lr-blue);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        footer h3 {
+            font-family: "Oswald", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-bottom: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li a {
+            color: var(--lr-dark);
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        footer ul li a:hover {
+            color: var(--lr-blue);
+        }
+
+        .locations {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .locations a {
+            color: var(--lr-dark);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        #copyright {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Mobile Accordion */
+        .mobile-grid {
+            display: none;
+        }
+
+        .mobile-grid-charac {
+            background-color: white;
+            color: var(--lr-dark);
+            padding: 1.5rem;
+            border-top: 1px solid var(--lr-dark);
+        }
+
+        .mobile-grid-welcome {
+            padding: 2rem 1.5rem;
+        }
+
+        .mobile-grid-welcome h2 {
+            font-family: "ivyora-display", sans-serif;
+            font-weight: 100;
+            font-style: italic;
+            font-size: 2.5rem;
+            color: var(--lr-dark);
+            margin-bottom: 1rem;
+        }
+
+        .mobile-grid-welcome p {
+            font-size: 1rem;
+            color: var(--lr-dark);
+            line-height: 1.7;
+        }
+
+        .grid-block-upper-text-mobile {
+            font-family: "Oswald", sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            color: var(--lr-dark);
+            cursor: pointer;
+        }
+
+        details summary {
+            list-style: none;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .mob-grid-slide img {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .mob-grid-slide a {
+            color: var(--lr-light);
+            text-decoration: none;
+        }
+
+        /* Tag */
+        .tag-container {
+            position: absolute;
+            top: 0;
+            right: 120px;
+            z-index: 999;
+            transform-origin: top center;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .tag-container img {
+            height: 650px;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(-3deg);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            50% {
+                transform: rotate(3deg);
             }
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .tag-container:hover {
+            animation-play-state: paused;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                max-width: 200px;
+            .tag-container {
+                right: 20px;
             }
-
-            .hero-image {
-                height: 200px;
-                margin-bottom: 2rem;
+            .tag-container img {
+                height: 350px;
             }
-
-            h1 {
-                font-size: 1.8rem;
+            .desktop-grid {
+                display: none;
             }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .website-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .website-links a {
+            .mobile-grid {
                 display: block;
+            }
+            .navbar-nav {
+                background: white;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            .navbar-nav .nav-link {
+                padding: 0.5rem 0;
+            }
+            .lr-grid-section {
+                padding: 0 !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .custom-banner-container h1 {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <img src="logo.png" alt="LR Paris" class="logo">
-        <div class="tagline">Branded Product Agency</div>
-        
-        <div class="hero-image">
-            <img src="hero.jpg" alt="LR Paris">
-        </div>
-        
-        <h1>Site en Construction</h1>
-        
-        
-        
-        <p>
-            Nous travaillons actuellement sur quelque chose d'exceptionnel.<br>
-            Notre nouveau site sera bientôt disponible.
-        </p>
-        
-        <p>
-            Depuis trois générations, nous créons des expériences de produits 
-            personnalisés qui racontent l'histoire unique de votre marque.
-        </p>
-        
-        <div class="links-section">
-            <p>En attendant, visitez :</p>
-            <div class="website-links">
-                <a href="https://lrparis.com" target="_blank">LRParis.com (English)</a>
-                <a href="https://lesboutiqueslr.fr" target="_blank">LesBoutiquesLR.fr</a>
+    <figure class="tag-container" id="tagContainer">
+        <img src="https://lrparis.com/wp-content/uploads/2025/09/LRParis-HangTag-02112543-1.png" alt="LR Paris tag" id="expandableImage">
+    </figure>
+
+    <header id="header" class="site-header" role="banner">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="https://lrparis.com/wp-content/uploads/2025/09/LR-Paris-Primary-Logo-1.png" alt="Logo LR Paris">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Basculer la navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto w-100 d-flex flex-row align-items-center">
+                        <li class="nav-item header-contact-link"><a href="https://www.lesboutiqueslr.fr/" target="_blank" class="nav-link">Les Boutiques</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            
+        </nav>
+    </header>
+
+    <main id="content" role="main" aria-label="Contenu principal">
+        <!-- Hero Banner -->
+        <section class="custom-banner-container">
+            <h1>
+                L'<span class="tilt-text">Agence</span><br>
+                créatrice de<br>
+                <span class="highlight-blue">produits</span><br>
+                que l'on garde
+            </h1>
+            <div id="scroll-down-arrow" class="arrow-container">
+                <a href="#a-propos"><div class="arrow-down"></div></a>
+            </div>
+        </section>
+
+        <!-- Clients Marquee -->
+        <section class="clients-section">
+            <h2 class="clients-title">Nos Clients</h2>
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <span class="client-item">Marriott Bonvoy</span><span class="client-item">Estée Lauder</span><span class="client-item">American Express</span><span class="client-item">BNY</span><span class="client-item">Département d'État</span><span class="client-item">Arent Fox Schiff</span><span class="client-item">Aveda</span><span class="client-item">Banana Republic</span><span class="client-item">Bilt</span><span class="client-item">Breitling</span><span class="client-item">Brookfield</span><span class="client-item">Campari</span><span class="client-item">Chanel</span><span class="client-item">Charlotte Tilbury</span><span class="client-item">Clinique</span><span class="client-item">Courvoisier</span><span class="client-item">Université Cornell</span><span class="client-item">Edition Hotels</span><span class="client-item">Harry Winston</span><span class="client-item">Harvard</span><span class="client-item">Hilton</span><span class="client-item">Hudson Yards</span><span class="client-item">J. Crew</span><span class="client-item">La Mer</span><span class="client-item">Madewell</span><span class="client-item">MAC Cosmetics</span><span class="client-item">MGM</span><span class="client-item">Marcolin</span><span class="client-item">Philharmonique de New York</span><span class="client-item">NYU</span><span class="client-item">Ocean X</span><span class="client-item">Oscar de la Renta</span><span class="client-item">The Ritz-Carlton</span><span class="client-item">St. Regis</span><span class="client-item">Standard Hotel</span><span class="client-item">Starboard</span><span class="client-item">Tenet Health</span><span class="client-item">Tom Ford</span><span class="client-item">TWA Hotel</span><span class="client-item">Wynn Hotel</span><span class="client-item">Marriott Bonvoy</span><span class="client-item">Estée Lauder</span><span class="client-item">American Express</span><span class="client-item">BNY</span><span class="client-item">Département d'État</span><span class="client-item">Arent Fox Schiff</span><span class="client-item">Aveda</span><span class="client-item">Banana Republic</span><span class="client-item">Bilt</span><span class="client-item">Breitling</span><span class="client-item">Brookfield</span><span class="client-item">Campari</span><span class="client-item">Chanel</span><span class="client-item">Charlotte Tilbury</span><span class="client-item">Clinique</span><span class="client-item">Courvoisier</span><span class="client-item">Université Cornell</span><span class="client-item">Edition Hotels</span><span class="client-item">Harry Winston</span><span class="client-item">Harvard</span><span class="client-item">Hilton</span><span class="client-item">Hudson Yards</span><span class="client-item">J. Crew</span><span class="client-item">La Mer</span><span class="client-item">Madewell</span><span class="client-item">MAC Cosmetics</span><span class="client-item">MGM</span><span class="client-item">Marcolin</span><span class="client-item">Philharmonique de New York</span><span class="client-item">NYU</span><span class="client-item">Ocean X</span><span class="client-item">Oscar de la Renta</span><span class="client-item">The Ritz-Carlton</span><span class="client-item">St. Regis</span><span class="client-item">Standard Hotel</span><span class="client-item">Starboard</span><span class="client-item">Tenet Health</span><span class="client-item">Tom Ford</span><span class="client-item">TWA Hotel</span><span class="client-item">Wynn Hotel</span>
+                </div>
+            </div>
+            <div id="a-propos"></div>
+        </section>
+
+        <!-- About Section -->
+        <section class="custom-paragraph-background">
+            <div class="container">
+                <p class="lr-paragraph-normal">
+                    <span class="lr-paragraph-highlighted">LR Paris</span> est une agence internationale spécialisée dans la création sur mesure d'objets et d'emballages de luxe pour les enseignes. Nous accompagnons les grandes marques mondiales en leur proposant des produits promotionnels en véritables expériences. Nous croyons en la création de produits et d'emballages que l'on garde avec plaisir.
+                </p>
+            </div>
+            <div id="nos-services"></div>
+        </section>
+
+        <!-- Services Grid - Desktop -->
+        <section class="container-fluid lr-grid-section">
+            <div class="desktop-grid">
+                <div class="row g-0">
+                    <div class="col-md-3 grid-item grid-item-1 border-top border-end border-dark">
+                        <h2>Ce que nous réalisons</h2>
+                        <p>Après trois générations d'expertise, de la conception à la fabrication, nous accompagnons les marques dans la création d'objets de communication à forte valeur ajoutée. Chaque réalisation est pensée pour traduire fidèlement l'ADN de la marque, allier l'exigence qualitative à l'esthétisme et s'inscrire dans la durée.</p>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-end border-dark" 
+                         onclick="openModal('branded')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Produits<br>de Marque</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-end border-dark"
+                         onclick="openModal('packaging')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Emballage</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-dark"
+                         onclick="openModal('branding')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Design +<br>Branding</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-bottom border-end border-dark"
+                         onclick="openModal('events')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Événements</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-bottom border-end border-dark"
+                         onclick="openModal('microsite')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Microsite</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-bottom border-end border-dark"
+                         onclick="openModal('sourcing')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Sourcing +<br>Fabrication</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid-item grid-item-2 border-top border-bottom border-dark"
+                         onclick="openModal('logistics')">
+                        <div class="custom-grid-inner">
+                            <p class="grid-block-upper-text chevron">Logistique +<br>Expédition</p>
+                            <p class="grid-block-lower-text">+ EN SAVOIR PLUS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Grid -->
+            <div class="mobile-grid">
+                <div class="mobile-grid-charac mobile-grid-welcome">
+                    <h2>Ce que nous réalisons</h2>
+                    <p>Après trois générations d'expertise, de la conception à la fabrication, nous accompagnons les marques dans la création d'objets de communication à forte valeur ajoutée.</p>
+                </div>
+
+                <div class="mobile-grid-charac" onclick="openModal('branded')">
+                    <span class="grid-block-upper-text-mobile">Produits de Marque ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('packaging')">
+                    <span class="grid-block-upper-text-mobile">Emballage ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('branding')">
+                    <span class="grid-block-upper-text-mobile">Design + Branding ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('events')">
+                    <span class="grid-block-upper-text-mobile">Événements ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('microsite')">
+                    <span class="grid-block-upper-text-mobile">Microsite ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('sourcing')">
+                    <span class="grid-block-upper-text-mobile">Sourcing + Fabrication ›</span>
+                </div>
+                <div class="mobile-grid-charac" onclick="openModal('logistics')">
+                    <span class="grid-block-upper-text-mobile">Logistique + Expédition ›</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="serviceModal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer id="footer" role="contentinfo">
+        <div class="container text-center" style="margin-bottom: 80px;" id="contact">
+            <div class="custom-hover">
+                <a class="lets-talk-link" href="mailto:contact@lrparis.com" aria-label="nous contacter par email">
+                    <span class="huge-footer-text">Parlons-en</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-4">
+                    <h3>Suivez-nous</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/company/lr-paris/" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://www.facebook.com/p/LR-Paris-100063689737584/" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/lr_paris/" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@lrparis.com">contact@lrparis.com</a></li>
+                        <li><a href="tel:+33142654340">+33 (0)1.42.65.43.40</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row justify-content-center locations mb-4">
+                <div class="col-12">
+                    <h3>Nos Bureaux</h3>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <b>New York</b><br>
+                    1412 Broadway, New York, NY 10018 Suite 1600, US<br>
+                    <a href="tel:+18457098013">+1 845-709-8013</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <b>Paris</b><br>
+                    36 Rue de Laborde, 75008 Paris, FR<br>
+                    <a href="tel:+33142654340">+33 (0)1.42.65.43.40</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <b>Bangkok</b><br>
+                    112/4 Narathiwat Road 1, Mobicom Building, 6th Floor, Sathon, Bangkok 10120, TH<br>
+                    <a href="tel:+6620248915">+66 2 024 8915</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="copyright" class="text-center">
+            &copy; 2026 LR PARIS, Tous droits réservés
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Modal content data
+        const services = {
+            branded: {
+                title: "Produits de Marque",
+                body: "Nous créons des produits promotionnels sur mesure qui incarnent l'identité de votre marque. Des vêtements aux accessoires, en passant par les objets du quotidien, chaque article est conçu pour laisser une impression durable et renforcer la connexion avec votre audience."
+            },
+            packaging: {
+                title: "Emballage",
+                body: "L'emballage est le premier contact physique avec votre marque. Nous concevons des solutions d'emballage premium qui transforment le moment du déballage en une expérience mémorable, de la boîte au papier de soie."
+            },
+            branding: {
+                title: "Design + Branding",
+                body: "Notre équipe créative développe des identités visuelles cohérentes et impactantes. Du logo aux guidelines de marque, nous assurons que chaque élément communique efficacement les valeurs de votre entreprise."
+            },
+            events: {
+                title: "Événements",
+                body: "Nous accompagnons vos événements avec des produits et expériences sur mesure. Lancements de produits, conférences, galas — chaque occasion mérite des éléments distinctifs qui marquent les esprits."
+            },
+            microsite: {
+                title: "Microsite",
+                body: "Nous développons des plateformes digitales dédiées pour vos programmes de produits de marque. Interfaces intuitives, gestion des commandes simplifiée et expérience utilisateur optimisée pour vos équipes et partenaires."
+            },
+            sourcing: {
+                title: "Sourcing + Fabrication",
+                body: "Grâce à notre réseau mondial de fabricants certifiés, nous sourçons et produisons des articles de qualité supérieure. Contrôle qualité rigoureux, respect des délais et engagement éthique sont au cœur de notre processus."
+            },
+            logistics: {
+                title: "Logistique + Expédition",
+                body: "De l'entreposage à la livraison finale, nous gérons l'ensemble de la chaîne logistique. Solutions de fulfillment personnalisées, suivi en temps réel et distribution mondiale pour une expérience sans friction."
+            }
+        };
+
+        // Modal functions
+        function openModal(serviceKey) {
+            const service = services[serviceKey];
+            if (!service) return;
+            
+            document.getElementById('modalTitle').textContent = service.title;
+            document.getElementById('modalBody').textContent = service.body;
+            
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
 </body>
 </html>
